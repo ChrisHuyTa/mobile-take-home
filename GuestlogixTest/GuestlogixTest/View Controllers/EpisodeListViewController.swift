@@ -25,7 +25,7 @@ class EpisodeListViewController: UIViewController {
         
         episodeTableView.dataSource = self
         episodeTableView.delegate = self
-//        episodeTableView.prefetchDataSource = self
+
         apiService.fetchEpisodes(page: currentPage) { (episodeData) in
             if episodeData != nil {
                 DispatchQueue.main.async {

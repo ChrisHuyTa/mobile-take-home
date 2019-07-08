@@ -22,7 +22,7 @@
 		792AC8A922D2B7A200A07BC9 /* EpisodeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8A722D2B7A200A07BC9 /* EpisodeTableViewCell.swift */; };
 		792AC8AA22D2B7A200A07BC9 /* EpisodeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792AC8A822D2B7A200A07BC9 /* EpisodeTableViewCell.xib */; };
 		792AC8AF22D3023300A07BC9 /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8AD22D3023300A07BC9 /* CharacterListViewController.swift */; };
-		792AC8B022D3023300A07BC9 /* EpisodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792AC8AE22D3023300A07BC9 /* EpisodeViewController.xib */; };
+		792AC8B022D3023300A07BC9 /* CharacterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792AC8AE22D3023300A07BC9 /* CharacterListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		792AC8A722D2B7A200A07BC9 /* EpisodeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeTableViewCell.swift; sourceTree = "<group>"; };
 		792AC8A822D2B7A200A07BC9 /* EpisodeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeTableViewCell.xib; sourceTree = "<group>"; };
 		792AC8AD22D3023300A07BC9 /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
-		792AC8AE22D3023300A07BC9 /* EpisodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpisodeViewController.xib; sourceTree = "<group>"; };
+		792AC8AE22D3023300A07BC9 /* CharacterListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +179,7 @@
 			children = (
 				792AC86F22D241A300A07BC9 /* EpisodeListViewController.swift */,
 				792AC8AD22D3023300A07BC9 /* CharacterListViewController.swift */,
-				792AC8AE22D3023300A07BC9 /* EpisodeViewController.xib */,
+				792AC8AE22D3023300A07BC9 /* CharacterListViewController.xib */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				792AC8B022D3023300A07BC9 /* EpisodeViewController.xib in Resources */,
+				792AC8B022D3023300A07BC9 /* CharacterListViewController.xib in Resources */,
 				792AC87822D241A400A07BC9 /* LaunchScreen.storyboard in Resources */,
 				792AC8AA22D2B7A200A07BC9 /* EpisodeTableViewCell.xib in Resources */,
 				792AC87522D241A400A07BC9 /* Assets.xcassets in Resources */,

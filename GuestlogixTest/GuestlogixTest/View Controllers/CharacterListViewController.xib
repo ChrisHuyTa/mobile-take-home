@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterListViewController" customModule="GuestlogixTest" customModuleProvider="target">
             <connections>
                 <outlet property="segmentedControl" destination="f4e-c2-ynQ" id="kc4-nz-ImJ"/>
-                <outlet property="tableView" destination="HsU-JD-Rug" id="7cU-ST-j0M"/>
+                <outlet property="tableView" destination="HsU-JD-Rug" id="wjK-NG-hfI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
