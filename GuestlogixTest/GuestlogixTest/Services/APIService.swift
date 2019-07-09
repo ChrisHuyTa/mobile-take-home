@@ -14,15 +14,17 @@ protocol APIService {
     func fetchCharacters(ids: [String], completionHandler: @escaping ([RMCharacter]?) -> Void)
 }
 
-class APIServiceClient: APIService {
+struct APIServiceClient: APIService {
     
+    static let shared = APIServiceClient()
     
     func fetchEpisodes(page: Int = 1, completionHandler: @escaping (EpisodeData?) -> Void) {
+        
         let url = URL(string: "https://rickandmortyapi.com/api/episode?page=\(page)")!
+        
         print("requesting from \(url)...")
         HttpClient.request(from: url) { (jsonData, httpError) in
             
-            debugPrint("retrieved episodes: \(jsonData!)")
             
             guard httpError == nil else {
                 return
@@ -44,13 +46,12 @@ class APIServiceClient: APIService {
         let param = ids.joined(separator: ",")
         let url = URL(string: "https://rickandmortyapi.com/api/character/\(param)")!
         print("requesting from \(url)...")
+        
         HttpClient.request(from: url) { (jsonData, httpError) in
             
             guard httpError == nil else {
                 return
             }
-            
-            debugPrint("retrieved characters: \(jsonData!)")
             
             do {
                 let data = try JSONSerialization.data(withJSONObject: jsonData as Any, options: [])

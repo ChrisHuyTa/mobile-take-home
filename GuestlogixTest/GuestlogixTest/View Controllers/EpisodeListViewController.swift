@@ -17,12 +17,13 @@ class EpisodeListViewController: UIViewController {
     var currentPage: Int = 1
     var episodes: [Episode] = []
     var apiService: APIService = {
-        return APIServiceClient()
+        return APIServiceClient.shared
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = "Episodes"
+            
         episodeTableView.dataSource = self
         episodeTableView.delegate = self
 
@@ -47,7 +48,7 @@ extension EpisodeListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("cell for row at \(indexPath)")
+        
         if indexPath.row == episodes.count - 5 && !episodeData!.info.next.isEmpty {
             self.currentPage += 1
             apiService.fetchEpisodes(page: self.currentPage) { (episodeData) in
@@ -60,7 +61,7 @@ extension EpisodeListViewController: UITableViewDataSource {
         }
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId)
-        
+        cell?.accessoryType = .disclosureIndicator
         if cell == nil {
             cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseId)
         }
@@ -78,12 +79,15 @@ extension EpisodeListViewController: UITableViewDataSource {
 extension EpisodeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let selectedCell = tableView.cellForRow(at: indexPath)
+        selectedCell?.isSelected = false
+        
         let selectedEpisode = self.episodes[indexPath.row]
         
         let viewController = CharacterListViewController()
         viewController.episode = selectedEpisode
         
-        self.present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

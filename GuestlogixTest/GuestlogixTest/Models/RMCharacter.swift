@@ -22,5 +22,6 @@ struct RMCharacter: Decodable {
     var species: String
     var type: String
     var gender: String
-    
+    var image: String
+    var created: String
 }

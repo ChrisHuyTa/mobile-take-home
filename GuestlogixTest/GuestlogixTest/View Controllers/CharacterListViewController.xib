@@ -23,14 +23,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="f4e-c2-ynQ">
-                    <rect key="frame" x="141" y="44" width="93" height="29"/>
+                    <rect key="frame" x="141" y="49" width="93" height="29"/>
                     <segments>
                         <segment title="Alive"/>
                         <segment title="Dead"/>
                     </segments>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HsU-JD-Rug">
-                    <rect key="frame" x="0.0" y="82" width="375" height="696"/>
+                    <rect key="frame" x="0.0" y="87" width="375" height="691"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
@@ -39,7 +39,7 @@
                 <constraint firstItem="HsU-JD-Rug" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="8il-0E-r1h"/>
                 <constraint firstItem="f4e-c2-ynQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ew5-oT-iHy"/>
                 <constraint firstItem="HsU-JD-Rug" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UbY-Zh-kFa"/>
-                <constraint firstItem="f4e-c2-ynQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Uz0-eW-7W0"/>
+                <constraint firstItem="f4e-c2-ynQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="Uz0-eW-7W0"/>
                 <constraint firstItem="HsU-JD-Rug" firstAttribute="top" secondItem="f4e-c2-ynQ" secondAttribute="bottom" constant="10" id="ui4-Vu-hj9"/>
                 <constraint firstItem="HsU-JD-Rug" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="y61-Np-9LG"/>
             </constraints>
