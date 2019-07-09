@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CharacterData: Decodable {
+struct RMCharacterResponse: Decodable {
     
     var info: Info
     var result: [RMCharacter]

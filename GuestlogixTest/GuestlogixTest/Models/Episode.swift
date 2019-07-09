@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EpisodeData: Decodable {
+struct EpisodeResponse: Decodable {
     var info: Info
     var results: [Episode]
 }

@@ -11,7 +11,7 @@ import Foundation
 struct HttpClient {
     
     static func request(from url: URL,
-                        completionHandler: @escaping (AnyObject?, HttpError?) -> Void) {
+                        completionHandler: @escaping (Data?, HttpError?) -> Void) {
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url) { (data, response, error) in
@@ -28,28 +28,11 @@ struct HttpClient {
                 return
             }
             
-            guard let jsonData = data else {
+            guard let rawData = data else {
                 return
             }
-            
-            do {
-                let unserializedJson = try JSONSerialization.jsonObject(
-                    with: jsonData,
-                    options: JSONSerialization.ReadingOptions.mutableContainers)
-                if let parsedJsonDictionary =
-                    unserializedJson as? [String: AnyObject] {
-                    completionHandler(parsedJsonDictionary as AnyObject?, nil)
-                } else if let parsedJsonArray
-                    = unserializedJson as? Array<AnyObject> {
-                    completionHandler(parsedJsonArray as AnyObject?, nil)
-                }
-            } catch let error as NSError {
-                completionHandler(nil, HttpError(
-                    errorCode: HttpErrorCode.other,
-                    errorDetails: error.userInfo as
-                        Dictionary<NSObject, AnyObject>?))
-            }
-            
+        
+            completionHandler(rawData, nil)
         }
         
         dataTask.resume()

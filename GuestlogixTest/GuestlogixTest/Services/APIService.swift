@@ -9,40 +9,38 @@
 import Foundation
 
 protocol APIService {
-    func fetchEpisodes(page: Int, completionHandler: @escaping (EpisodeData?) -> Void)
+    func fetchEpisodes(page: Int, completionHandler: @escaping (EpisodeResponse?, HttpError?) -> Void)
     
-    func fetchCharacters(ids: [String], completionHandler: @escaping ([RMCharacter]?) -> Void)
+    func fetchCharacters(ids: [String], completionHandler: @escaping ([RMCharacter]?, HttpError?) -> Void)
 }
 
 struct APIServiceClient: APIService {
     
-    static let shared = APIServiceClient()
-    
-    func fetchEpisodes(page: Int = 1, completionHandler: @escaping (EpisodeData?) -> Void) {
+    func fetchEpisodes(page: Int = 1, completionHandler: @escaping (EpisodeResponse?, HttpError?) -> Void) {
         
         let url = URL(string: "https://rickandmortyapi.com/api/episode?page=\(page)")!
         
         print("requesting from \(url)...")
         HttpClient.request(from: url) { (jsonData, httpError) in
             
-            
             guard httpError == nil else {
+                completionHandler(nil, httpError)
                 return
             }
             
             do {
-                let data = try JSONSerialization.data(withJSONObject: jsonData as Any, options: [])
-                if let string = String(data: data, encoding: String.Encoding.utf8)?.data(using: .utf8) {
-                    let episodeData = try JSONDecoder().decode(EpisodeData.self, from: string)
-                    completionHandler(episodeData)
-                }
-            } catch {
-                completionHandler(nil)
+                let episodeResponse = try JSONDecoder().decode(EpisodeResponse.self, from: jsonData!)
+                completionHandler(episodeResponse, nil)
+            } catch let error as NSError {
+                completionHandler(nil, HttpError(
+                    errorCode: HttpErrorCode.other,
+                    errorDetails: error.userInfo as
+                        Dictionary<NSObject, AnyObject>?))
             }
         }
     }
     
-    func fetchCharacters(ids: [String], completionHandler: @escaping ([RMCharacter]?) -> Void) {
+    func fetchCharacters(ids: [String], completionHandler: @escaping ([RMCharacter]?, HttpError?) -> Void) {
         let param = ids.joined(separator: ",")
         let url = URL(string: "https://rickandmortyapi.com/api/character/\(param)")!
         print("requesting from \(url)...")
@@ -50,17 +48,19 @@ struct APIServiceClient: APIService {
         HttpClient.request(from: url) { (jsonData, httpError) in
             
             guard httpError == nil else {
+                completionHandler(nil, httpError)
                 return
             }
             
             do {
-                let data = try JSONSerialization.data(withJSONObject: jsonData as Any, options: [])
-                if let string = String(data: data, encoding: String.Encoding.utf8)?.data(using: .utf8) {
-                    let characterList = try JSONDecoder().decode([RMCharacter].self, from: string)
-                    completionHandler(characterList)
-                }
-            } catch {
-                completionHandler(nil)
+                let characterList = try JSONDecoder().decode([RMCharacter].self, from: jsonData!)
+                completionHandler(characterList, nil)
+            } catch let error as NSError {
+                completionHandler(nil, HttpError(
+                                        errorCode: HttpErrorCode.other,
+                                        errorDetails: error.userInfo as
+                                            Dictionary<NSObject, AnyObject>?))
+            
             }
         }
     }

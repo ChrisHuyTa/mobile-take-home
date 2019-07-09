@@ -13,11 +13,11 @@ class EpisodeListViewController: UIViewController {
     private let cellReuseId = "episodeCell"
     @IBOutlet weak var episodeTableView: UITableView!
     
-    var episodeData: EpisodeData?
+    var episodeData: EpisodeResponse?
     var currentPage: Int = 1
     var episodes: [Episode] = []
     var apiService: APIService = {
-        return APIServiceClient.shared
+        return APIServiceClient()
     }()
     
     override func viewDidLoad() {
@@ -27,14 +27,18 @@ class EpisodeListViewController: UIViewController {
         episodeTableView.dataSource = self
         episodeTableView.delegate = self
 
-        apiService.fetchEpisodes(page: currentPage) { (episodeData) in
-            if episodeData != nil {
-                DispatchQueue.main.async {
-                    self.episodeData = episodeData
-                    self.episodes.append(contentsOf: self.episodeData!.results)
-                    self.episodeTableView.reloadData()
-                }
+        apiService.fetchEpisodes(page: currentPage) { (episodeData, httpError) in
+            
+            if httpError != nil {
+                return
             }
+            
+            DispatchQueue.main.async {
+                self.episodeData = episodeData
+                self.episodes.append(contentsOf: self.episodeData!.results)
+                self.episodeTableView.reloadData()
+            }
+            
         }
     }
 
@@ -51,7 +55,12 @@ extension EpisodeListViewController: UITableViewDataSource {
         
         if indexPath.row == episodes.count - 5 && !episodeData!.info.next.isEmpty {
             self.currentPage += 1
-            apiService.fetchEpisodes(page: self.currentPage) { (episodeData) in
+            apiService.fetchEpisodes(page: self.currentPage) { (episodeData, httpError) in
+                
+                if httpError != nil {
+                    return
+                }
+                
                 DispatchQueue.main.async {
                     self.episodeData = episodeData
                     self.episodes.append(contentsOf: self.episodeData!.results)
@@ -90,15 +99,3 @@ extension EpisodeListViewController: UITableViewDelegate {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
-
-//extension ViewController: UITableViewDataSourcePrefetching {
-//    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-//        print("prefetch rows at \(indexPaths)")
-////        guard let episodeData = self.episodeData else {
-////            return
-////        }
-////
-////        if indexPaths[0].row <
-//    }
-//
-//}

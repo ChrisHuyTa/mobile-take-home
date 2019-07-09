@@ -51,7 +51,12 @@ class CharacterListViewController: UIViewController {
         }
         
         let ids = getCharacterIds(episode: episode)
-        self.apiService.fetchCharacters(ids: ids) { (characterList) in
+        self.apiService.fetchCharacters(ids: ids) { (characterList, httpError) in
+            
+            if httpError != nil {
+                return
+            }
+            
             DispatchQueue.main.async {
                 guard let characterList = characterList else { return }
                 
