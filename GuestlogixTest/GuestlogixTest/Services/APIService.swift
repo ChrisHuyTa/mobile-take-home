@@ -20,7 +20,6 @@ struct APIServiceClient: APIService {
         
         let url = URL(string: "https://rickandmortyapi.com/api/episode?page=\(page)")!
         
-        print("requesting from \(url)...")
         HttpClient.request(from: url) { (jsonData, httpError) in
             
             guard httpError == nil else {
@@ -43,7 +42,6 @@ struct APIServiceClient: APIService {
     func fetchCharacters(ids: [String], completionHandler: @escaping ([RMCharacter]?, HttpError?) -> Void) {
         let param = ids.joined(separator: ",")
         let url = URL(string: "https://rickandmortyapi.com/api/character/\(param)")!
-        print("requesting from \(url)...")
         
         HttpClient.request(from: url) { (jsonData, httpError) in
             

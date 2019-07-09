@@ -21,7 +21,7 @@
 		792AC8A622D262CD00A07BC9 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8A522D262CD00A07BC9 /* HttpClient.swift */; };
 		792AC8AF22D3023300A07BC9 /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8AD22D3023300A07BC9 /* CharacterListViewController.swift */; };
 		792AC8B022D3023300A07BC9 /* CharacterListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792AC8AE22D3023300A07BC9 /* CharacterListViewController.xib */; };
-		792AC8B222D3C52200A07BC9 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8B122D3C52200A07BC9 /* UIImageViewExtension.swift */; };
+		792AC8B222D3C52200A07BC9 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8B122D3C52200A07BC9 /* UIImageView.swift */; };
 		792AC8B522D3C77000A07BC9 /* CharacterListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8B322D3C77000A07BC9 /* CharacterListTableCell.swift */; };
 		792AC8B622D3C77000A07BC9 /* CharacterListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 792AC8B422D3C77000A07BC9 /* CharacterListTableCell.xib */; };
 		792AC8B922D3E29D00A07BC9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792AC8B722D3E29D00A07BC9 /* ProfileViewController.swift */; };
@@ -66,7 +66,7 @@
 		792AC8A522D262CD00A07BC9 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		792AC8AD22D3023300A07BC9 /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
 		792AC8AE22D3023300A07BC9 /* CharacterListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListViewController.xib; sourceTree = "<group>"; };
-		792AC8B122D3C52200A07BC9 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		792AC8B122D3C52200A07BC9 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		792AC8B322D3C77000A07BC9 /* CharacterListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListTableCell.swift; sourceTree = "<group>"; };
 		792AC8B422D3C77000A07BC9 /* CharacterListTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterListTableCell.xib; sourceTree = "<group>"; };
 		792AC8B722D3E29D00A07BC9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 				792AC87422D241A400A07BC9 /* Assets.xcassets */,
 				792AC87622D241A400A07BC9 /* LaunchScreen.storyboard */,
 				792AC87922D241A400A07BC9 /* Info.plist */,
-				792AC8B122D3C52200A07BC9 /* UIImageViewExtension.swift */,
+				792AC8B122D3C52200A07BC9 /* UIImageView.swift */,
 			);
 			path = GuestlogixTest;
 			sourceTree = "<group>";
@@ -327,7 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				792AC8B222D3C52200A07BC9 /* UIImageViewExtension.swift in Sources */,
+				792AC8B222D3C52200A07BC9 /* UIImageView.swift in Sources */,
 				792AC87022D241A300A07BC9 /* EpisodeListViewController.swift in Sources */,
 				792AC8B522D3C77000A07BC9 /* CharacterListTableCell.swift in Sources */,
 				792AC8AF22D3023300A07BC9 /* CharacterListViewController.swift in Sources */,

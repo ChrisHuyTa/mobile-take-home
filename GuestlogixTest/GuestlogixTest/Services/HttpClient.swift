@@ -10,32 +10,43 @@ import Foundation
 
 struct HttpClient {
     
-    static func request(from url: URL,
+//    private let noResponseMsg = "no response"
+    
+    static func request(from url: URL, qos: DispatchQoS.QoSClass = .userInitiated,
                         completionHandler: @escaping (Data?, HttpError?) -> Void) {
         
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: url) { (data, response, error) in
+        DispatchQueue.global(qos: qos).async {
+            let session = URLSession.shared
             
-            guard error == nil else {
-                completionHandler(nil, HttpError(errorCode: HttpErrorCode.noResponse,
-                                                 errorDetails: error?._userInfo as! Dictionary<NSObject, AnyObject>?))
-                return
+            let dataTask = session.dataTask(with: url) { (data, response, error) in
+                
+                guard error == nil else {
+                    DispatchQueue.main.async {
+                        completionHandler(nil, HttpError(errorCode: HttpErrorCode.noResponse,
+                                                     errorDetails: error?._userInfo as! Dictionary<NSObject, AnyObject>?))
+                    }
+                    return
+                }
+                debugPrint("urlResponse: \(response!)")
+                if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
+                    DispatchQueue.main.async {
+                        completionHandler(nil, HttpError(errorCode: HttpErrorCode(rawValue: httpResponse.statusCode)!,
+                                                     errorDetails: error?._userInfo as! Dictionary<NSObject, AnyObject>?))
+                    }
+                    return
+                }
+                
+                guard let rawData = data else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    completionHandler(rawData, nil)
+                }
+                
             }
             
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
-                completionHandler(nil, HttpError(errorCode: HttpErrorCode(rawValue: httpResponse.statusCode)!,
-                                                 errorDetails: error?._userInfo as! Dictionary<NSObject, AnyObject>?))
-                return
-            }
-            
-            guard let rawData = data else {
-                return
-            }
-        
-            completionHandler(rawData, nil)
+            dataTask.resume()
         }
-        
-        dataTask.resume()
     }
     
 }
